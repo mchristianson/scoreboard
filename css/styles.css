@@ -1,0 +1,14 @@
+.table th {
+	background-color: #eee;
+	text-align: center
+}
+.table th, .table td {
+	text-align: center;
+	border-right: 1px solid #eee;
+	vertical-align: middle;
+
+}
+.widget-content-blue-inner {
+    min-height: 275px;
+}
+

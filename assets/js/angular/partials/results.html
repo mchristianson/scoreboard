@@ -1,0 +1,52 @@
+<div class="content-wrapper">
+    <div class="content-inner content-inner-beige">
+        <div class="page-header page-header-dark-blue">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default" ng-class="{'active': year === 2013}" ng-click="changeYear(2013)">2013</button>
+              <button type="button" class="btn btn-default" ng-class="{'active': year === 2014}" ng-click="changeYear(2014)">2014</button>
+              <button type="button" class="btn btn-default" ng-class="{'active': year === 2015}" ng-click="changeYear(2015)">2015</button>
+              <button type="button" class="btn btn-default" ng-class="{'active': year === 2016}" ng-click="changeYear(2016)">2016</button>
+              <button type="button" class="btn btn-default" ng-class="{'active': year === 2017}" ng-click="changeYear(2017)">2017</button>
+            </div>
+            <h1><i class="icon-trophy"></i> Results</h1>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="widget">
+                <div class="widget-content-white glossed">
+                    <div class="padded clearfix small-no-padded">
+                        <div class="alert alert-danger alert-dismissable" ng-show="errorMsg">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign"></i> {{errorMsg}}
+                        </div>
+
+                        <div ng-repeat="(roundNumber, games) in rounds" class="clearfix">
+                            <h3 class="section-title first-title"><i class="icon-tasks"></i> {{roundDefinitions[(roundNumber)]}}</h3>
+                            <div class="col-lg-4 col-md-6 col-sm-12 small-no-padding {{game.gameState}}" ng-repeat="game in games">
+                                <div class="widget-content-blue-wrapper changed-up">
+                                    <div class="widget-content-blue-inner padded">
+                                        <div class="pre-value-block"><team-icon icon="game.homeIcon"></team-icon>
+                                            {{game.homeTeam}} <span class="ranking">({{game.homeRank}})</span>
+                                            <span class="pull-right badge">{{game.homeScore}}</span></div>
+                                        <div class="pre-value-block"><team-icon icon="game.awayIcon"></team-icon>
+                                            {{game.awayTeam}} <span class="ranking">({{game.awayRank}})</span>
+                                            <span class="pull-right badge">{{game.awayScore}}</span></div>
+                                        <div class="text-center" ng-if="!!game.gameDate">
+                                            {{game.gameDate | date:'EEE MM/dd hh:mm'}} {{game.timeclock}} {{game.currentPeriod}}
+                                            <div  ng-show="game.player !== 'nobody'">
+                                                [{{game.winnerScore}}-{{game.loserScore}}] {{game.player}} wins ${{game.amount}}
+                                            </div>
+                                            <div ng-show="game.player === 'nobody'">
+                                                Somebody will win ${{game.amount}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

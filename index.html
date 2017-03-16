@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="scoreboard">
+<head>
+    <meta charset="utf-8">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel='stylesheet' href='assets/css/fullcalendar.css'>
+    <link rel='stylesheet' href='assets/css/datatables/datatables.css'>
+    <link rel='stylesheet' href='assets/css/datatables/bootstrap.datatables.css'>
+    <link rel='stylesheet' href='assets/scss/chosen.css'>
+    <link rel='stylesheet' href='assets/scss/font-awesome/font-awesome.css'>
+    <link rel='stylesheet' href='assets/css/app.css'>
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald:300,400,700|Open+Sans:400,700,300' rel='stylesheet'
+          type='text/css'>
+
+    <link href="assets/favicon.ico" rel="shortcut icon">
+    <link href="assets/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    @javascript html5shiv respond.min
+    <![endif]-->
+
+    <title>March Madness Scoreboard</title>
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body class="body-dark-blue">
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-41060364-3', 'auto');
+    ga('send', 'pageview');
+
+</script>
+<div class="all-wrapper">
+    <div class="row">
+        <div class="col-md-2">
+            <div class="text-center">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="side-bar-wrapper collapse navbar-collapse navbar-ex1-collapse">
+                <a href="#" class="logo hidden-sm hidden-xs">
+                    <div class="bball"></div>
+                    <span>March Madness Scoreboard</span>
+                </a>
+
+                <div class="relative-w" ng-controller="NavCtrl">
+                    <ul class="side-menu side-menu-dark-blue">
+                        <li ng-class="{current: location.path() == '/picks'}">
+                            <a href="#/picks" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="pull-right"></span>
+                                <i class="icon-th"></i> Picks
+                            </a>
+                        </li>
+                        <li ng-class="{current: location.path() == '/players'}">
+                            <a href="#/players" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="badge pull-right"></span>
+                                <i class="icon-user"></i> Players
+                            </a>
+                        </li>
+                        <li ng-class="{current: location.path() == '/results'}">
+                            <a href="#/results" data-toggle="collapse" data-target=".navbar-collapse">
+                                <i class="icon-trophy"></i> Results
+                            </a>
+                        </li>
+                        <li ng-class="{current: location.path() == '/about'}">
+                            <a href="#/about" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="badge pull-right"></span>
+                                <i class="icon-question-sign"></i> About
+                            </a>
+                        </li>
+                        <li ng-class="{current: location.path() == '/messages'}">
+                            <a href="#/messages" data-toggle="collapse" data-target=".navbar-collapse">
+                                <span class="badge pull-right"></span>
+                                <i class="icon-comments"></i> Messages
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10" ng-view>
+        </div>
+
+    </div>
+</div>
+</div>
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src='assets/js/bootstrap/tab.js'></script>
+<script src='assets/js/bootstrap/dropdown.js'></script>
+<script src='assets/js/bootstrap/collapse.js'></script>
+<script src='assets/js/bootstrap/alert.js'></script>
+<script src='assets/js/bootstrap/transition.js'></script>
+<script src='assets/js/bootstrap/tooltip.js'></script>
+
+<script src='assets/js/angular.js'></script>
+<script src='assets/js/angular/bootstrap-position.js'></script>
+<script src='assets/js/angular/bootstrap-tooltip.js'></script>
+<script src='assets/js/angular/bootstrap-bindHtml.js'></script>
+<script src='assets/js/angular-route.js'></script>
+<script src='assets/js/angular-resource.js'></script>
+<script src='assets/js/angular/app.js'></script>
+<script src='assets/js/angular/controllers.js'></script>
+<script src='assets/js/angular/directives.js'></script>
+<script src='assets/js/angular/services.js'></script>
+
+<script>
+    $(function() {
+        $('.icon-th').tooltip();
+    });
+</script>
+</body>
+
+</html>

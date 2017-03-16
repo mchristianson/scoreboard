@@ -1,0 +1,56 @@
+<div class="content-wrapper">
+    <div class="content-inner content-inner-beige">
+        <div class="page-header page-header-dark-blue">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default" ng-class="year === 2013 ? 'active' : ''" ng-click="changeYear(2013)">2013</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2014 ? 'active' : ''" ng-click="changeYear(2014)">2014</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2015 ? 'active' : ''" ng-click="changeYear(2015)">2015</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2016 ? 'active' : ''" ng-click="changeYear(2016)">2016</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2017 ? 'active' : ''" ng-click="changeYear(2017)">2017</button>
+            </div>
+            <h1><i class="icon-user"></i> Players</h1>
+        </div>
+        <div class="main-content">
+            <div class="widget">
+                <div class="widget-content-white glossed">
+                    <div class="padded small-no-padded">
+                        <div class="alert alert-danger alert-dismissable" ng-show="errorMsg">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign"></i> {{errorMsg}}
+                        </div>
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Number of Picks</th>
+                                <th>Winnings</th>
+                                <th ng-show="year == 2017">Owe</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="player in playerWinnings | orderBy:'winnings':true">
+                                <td>{{player.name}}</td>
+                                <td>{{player.count}}</td>
+                                <td><span class="label label-success">${{player.winnings}}</span></td>
+                                <td ng-class="(player.count * 10) - player.paid != 0 && 'unpaid' || 'paid'" ng-show="year == 2017">
+                                    <span class="label label-success" ng-show="(player.count * 10) - player.paid === 0">paid</span>
+                                    <span class="label label-danger" ng-show="(player.count * 10) - player.paid !== 0">owes ${{(player.count * 10) - player.paid}}</span>
+                                </td>
+                            </tr>
+                                <tr>
+                                    <th>Total</th>
+                                    <th>{{totalCount}}</th>
+                                    <th></th>
+                                    <th ng-show="year == 2017"><span class="unpaid">${{totalCollected}}</span> / $1000</th>
+                               </tr>
+
+                            </tbody>
+
+                            </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

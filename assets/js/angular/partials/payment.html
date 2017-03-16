@@ -1,0 +1,35 @@
+<div class="content-wrapper">
+    <div class="content-inner content-inner-beige">
+        <div class="page-header page-header-dark-blue">
+            <h1><i class="icon-user"></i> Payment</h1>
+        </div>
+        <div class="main-content">
+            <div class="widget">
+                <div class="widget-content-white glossed">
+                    <div class="padded small-no-padded">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Count</th>
+                                <th>Payment</th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="player in players">
+                                <td>{{player.user_id}}</td>
+                                <td>{{player.count}}</td>
+                                <td><input type="text" id="paid" ng-model="player.paid" class="form-control" style="width: 50px;"/></td>
+                                <td><button ng-click="addPayment(player.user_id, player.paid)" class="btn">Save</button> </td>
+                            </tr>
+                            </tbody>
+
+                            </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

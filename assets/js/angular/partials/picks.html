@@ -1,0 +1,63 @@
+<div class="content-wrapper">
+    <div class="content-inner content-inner-beige">
+        <div class="page-header page-header-dark-blue">
+            <div class="btn-group pull-right">
+              <button type="button" class="btn btn-default" ng-class="year === 2013 ? 'active' : ''" ng-click="changeYear(2013)">2013</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2014 ? 'active' : ''" ng-click="changeYear(2014)">2014</button>
+              <button type="button" class="btn btn-default" ng-class="year === 2015 ? 'active' : ''" ng-click="changeYear(2015)">2015</button>
+                <button type="button" class="btn btn-default" ng-class="year === 2016 ? 'active' : ''" ng-click="changeYear(2016)">2016</button>
+                <button type="button" class="btn btn-default" ng-class="year === 2017 ? 'active' : ''" ng-click="changeYear(2017)">2017</button>
+            </div>
+            <h1><i class="icon-th" data-toggle="tooltip" data-placement="left" title="Tooltip on left"></i> Picks</h1>
+        </div>
+        <div class="main-content">
+            <div class="widget">
+                <div class="widget-content-white glossed">
+                    <div class="padded small-no-padded">
+                        <div class="alert alert-danger alert-dismissable show-flip">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign" ng-hide="user"></i> For better display turn your phone to landscape mode.
+                        </div>
+                        <div class="alert alert-info alert-dismissable" ng-show="user">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign"></i> <strong>{{user}}</strong> you have <span class="badge alert-info">{{totalPicks()}}</span> total picks. You owe <span class="badge alert-info">${{totalPicks()}}0</span>.
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-hide="user">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign" ng-hide="user"></i> Enter your email address to make your picks.
+                            <input name="email" type="text" class="form-control" style="display: inline; width: auto;" placeholder="Email Address" ng-model="email" required email/>
+                            <button ng-click="setUser()" class="btn btn-primary">Make Picks</button>
+                        </div>
+                        <div class="alert alert-danger alert-dismissable" ng-show="notFound">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <i class="icon-exclamation-sign" ng-hide="user"></i> Email address not found. Try again or contact <a href="mailto:christianson.matt@gmail.com">Matt</a> to play.
+                        </div>
+                        <table class="table table-bordered table-hover pick-table">
+
+                            <tr>
+                                <th colspan="12">WINNER'S SCORE</th>
+                            </tr>
+                            <tr>
+                                <th style="width:2%;border-top:0;">&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th ng-repeat="col in columns">{{homeScores[col]}}</th>
+                            </tr>
+                            <tr ng-repeat="row in rows">
+                                <th rowspan="10" style="width:2%;border-top:0;" ng-show="$index == 0">L<br/>O<br/>S<br/>E<br/>R<br/>'S<br/><br/>S<br/>C<br/>O<br/>R<br/>E</th>
+                            <th>{{awayScores[row]}}</th>
+                            <td ng-repeat="column in columns" tooltip="{{findPick(row+''+column)}} {{awayScores[row]+'-'+homeScores[column]}}" tooltip-append-to-body="true">
+                                <span ng-show="findPick()" ng-class="ownPick()">{{findPick(row+''+column)}}</span>
+                                <span ng-show="user">
+                                    <a class="icon-ok" type="button" ng-hide="findPick()" ng-click="pickIt()"></a>
+                                    <a class="icon-remove" type="button" ng-show="ownPick()" ng-click="unPickIt()"></a>
+                                </span>
+                            </td>
+                            </tr>
+                            </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
